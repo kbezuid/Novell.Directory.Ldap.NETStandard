@@ -1,5 +1,33 @@
 # Changelog
 
+### 3.6.0
+* **Breaking change** Connecting using "host:port" and multiple hosts "host1 host2" syntax specified in the host string parameter is not supported anymore. Anyone who is really fond of these features can write them on top of the core api Connect(host, port)
+* Implement SASL external authentication with client certificate
+* Add LdapConnectionOptions to allow better configuration of how to connect including
+    * configure the SslProtocols
+    * configure a selector to filter the ip addresses used for connecting
+    * connect using SSL
+    * configure client certificates
+    * configure the certification callbacks
+* Fix thread-safety issue - thanks to Marcin Krystianc - https://github.com/marcin-krystianc
+* Fix utf encoding issue in filter - thanks to Andrey Chayka - https://github.com/ubik
+* Move build to Azure DevOps
+    * the tests are running on both netcoreapp3.1 and net5
+        * the units tests are running on all three major platforms Windows, Linux Ubuntu, MacOS
+        * the functional and stress tests are running against OpenLdap on Ubuntu 20.04
+    * use Invoke-Build for the build script
+* Various small improvements
+
+### 3.5.x
+* Add SimplePagedResultsControl & helper class for using it - thanks to Aleksandr Eliseev - https://github.com/metacube
+* Add helper classes & extensions methods to ILdapConnection for using SimplePagedResultsControl & VLVC
+* Add samples via tests of using SimplePagedResultsControl & VLVC for reading large results via paging
+* Increase performance in filter parsing - thanks to https://github.com/isnogud
+
+### 3.4.x
+* net5 package
+* Avoid unnecessary async calls - thanks to Steve Greatrex - https://github.com/stevegreatrex
+
 ### 3.3.x
 * Simplify ILogger dependencies - thanks to Thomas Ibel - https://github.com/tibel
 * Add strong name - thanks to Thomas Ibel - https://github.com/tibel
